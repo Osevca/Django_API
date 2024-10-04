@@ -1,17 +1,17 @@
 import os
 import django
 from django.conf import settings
-
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "snippets.settings")
-django.setup()
-
 import pytest
+import uuid
 from ninja.testing import TestClient
+
 from snippets.api import api
 from core.models import CustomUser as User
 from core.auth import create_token
-import uuid
-from core.signals import logger
+
+
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "snippets.settings")
+django.setup()
 
 @pytest.fixture(scope="session")
 def django_db_setup(django_db_setup, django_db_blocker):

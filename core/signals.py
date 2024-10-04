@@ -18,7 +18,7 @@ def note_created(sender, instance, created, **kwargs):
 
 @receiver(pre_delete, sender=User)
 def delete_related_objects(sender, instance, **kwargs):
-    logger.info(f"Deleting all objects related to user: {instance.username}")
+    logger.info(f'Deleting all objects related to user: {instance.username}')
 
     Note.objects.filter(user=instance).delete()
 

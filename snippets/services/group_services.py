@@ -8,32 +8,16 @@ from core.signals import logger
 
 
 def create_group(name: str, tags: list[int] = None) -> Group:
-    # if Group.objects.filter(name=name).exists():
-    #     raise ValidationError(f"Group with name '{name}' already exists.")
-    # group = Group.objects.create(name=name)
-    # if tags:
-    #     group.tags.set(tags)
-    # return group
     if not name.strip():
         raise ValidationError("Group name cannot be empty.")
     if Group.objects.filter(name=name).exists():
-        raise ValidationError(f"Group with name '{name}' already exists.")
+        raise ValidationError(f"Group with name '{name}'already exists.")
     group = Group.objects.create(name=name)
     if tags:
         group.tags.set(tags)
     return group
 
 def update_group(group: Group, name: str = str, tags: list[int] = None) -> Group:
-    # if name and not name.strip():
-    #     raise ValidationError("Group name cannot be empty.")
-    # if name and Group.objects.filter(name=name).exclude(id=group.id).exists():
-    #     raise ValidationError(f"Group with name '{name}' already exists.")
-
-    # group.name = name if name else group.name
-    # if tags is not None:
-    #     group.tags.set(tags)
-    # group.save()
-    # return group
     if not name.strip():
         raise ValidationError("Group name cannot be empty.")
     if name and Group.objects.filter(name=name).exclude(id=group.id).exists():

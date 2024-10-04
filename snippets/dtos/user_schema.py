@@ -1,8 +1,6 @@
 from ninja import Schema
 from typing import Optional, List
 
-# from core.models import User
-
 class UserIn(Schema):
     username: str
     password: str
